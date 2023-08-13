@@ -100,7 +100,7 @@ corpus = []
 
 # Add documents from each source to the corpus list
 corpus.extend(pdfs)
-corpus.extend(docs)
+# corpus.extend(docs)
 corpus.extend(webpages)
 
 # print(len(corpus))
