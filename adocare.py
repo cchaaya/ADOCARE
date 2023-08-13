@@ -20,17 +20,11 @@ from langchain.prompts import PromptTemplate
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
 
-"""## Set OpenAI Key"""
-
 # This will read and set environment variables from the .env file in the Colab environment
 load_dotenv()
 
 # Set the OpenAI API key for authentication
 os.environ['OPENAI_API_KEY'] = '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'
-
-"""# Document Loading
-
-*   We will use several documents sources and techniques to load our documents and then combine them in one corpus for further processing and analysis
 
 ## PDFs
 """
