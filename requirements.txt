@@ -13,4 +13,5 @@ brotli==1.0.9
 pydub==0.25.1
 bs4==0.0.1
 chromadb==0.4.5
+sqlite>=3.35.0
 
