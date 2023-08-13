@@ -335,6 +335,9 @@ conv_qa = ConversationalRetrievalChain.from_llm(
 # if __name__ == "__main__":
 #     main()
 
+# Clear Streamlit cache
+st.set_option('deprecation.showfileUploaderEncoding', False)
+
 import streamlit as st
 
 def main():
@@ -343,9 +346,9 @@ def main():
     # Initialize an empty list to store the conversation
     conversation = []
 
-    while True:
-        user_question = st.text_input("User question:")
-        
+    user_question = st.text_area("User question:")
+    
+    if st.button("Ask"):
         if user_question:
             # Perform conversational question-answering using the model
             result = conv_qa({"question": user_question})
@@ -359,10 +362,11 @@ def main():
                 st.text(f"{sender} {message}")
         
         if st.button("Exit"):
-            break
+            st.stop()
 
 if __name__ == "__main__":
     main()
+
 
 
 
