@@ -314,5 +314,5 @@ if __name__ == "__main__":
         # Perform conversational question-answering using the 'conv_qa' instance
         result = conv_qa({"question": user_question})
 
-#         # Print the bold label and the generated answer
-#         print("\033[1mAdocare reply:\033[0m", result['answer'])
+        # Print the bold label and the generated answer
+        print("\033[1mAdocare reply:\033[0m", result['answer'])
