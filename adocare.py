@@ -337,7 +337,6 @@ conv_qa = ConversationalRetrievalChain.from_llm(
 #     main()
 
 
-
 def main():
     st.title("Adocare Chatbot")
 
@@ -347,12 +346,10 @@ def main():
         # Perform conversational question-answering using the model
         result = conv_qa({"question": user_question})
 
-        # Display the question and answer side by side
-        col1, col2 = st.beta_columns(2)
-        with col1:
-            st.text("User question: " + user_question)
-        with col2:
-            st.text("Adocare reply: " + result['answer'])
+        # Display the question and answer in a single text block
+        st.text("User question: " + user_question)
+        st.text("Adocare reply: " + result['answer'])
 
 if __name__ == "__main__":
     main()
+
