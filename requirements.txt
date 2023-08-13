@@ -11,4 +11,5 @@ websockets==11.0.3
 certifi==2023.7.22
 brotli==1.0.9
 pydub==0.25.1
+ffmpeg==7.4.2-0ubuntu0.22.04.1
 
