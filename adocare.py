@@ -302,17 +302,17 @@ conv_qa = ConversationalRetrievalChain.from_llm(
 """Now, it's your trun to try with any questions you have!
 # """
 
-# # Conversational Retrieval Chain implementation
-# if __name__ == "__main__":
-#     while True:
-#         # question = input("Please enter your question:")
-#         user_question = input("\033[1mUser question:\033[0m ")
-#         if user_question.lower() == "exit":
-#             print("Goodbye!")
-#             break
+# Conversational Retrieval Chain implementation
+if __name__ == "__main__":
+    while True:
+        # question = input("Please enter your question:")
+        user_question = input("\033[1mUser question:\033[0m ")
+        if user_question.lower() == "exit":
+            print("Goodbye!")
+            break
 
-#         # Perform conversational question-answering using the 'conv_qa' instance
-#         result = conv_qa({"question": user_question})
+        # Perform conversational question-answering using the 'conv_qa' instance
+        result = conv_qa({"question": user_question})
 
 #         # Print the bold label and the generated answer
 #         print("\033[1mAdocare reply:\033[0m", result['answer'])
