@@ -227,7 +227,7 @@ qa_chain = RetrievalQA.from_chain_type(
 )
 
 # Perform question-answering using the 'qa_chain' instance with the given query
-result = qa_chain({"query": question})
+# result = qa_chain({"query": question})
 
 # # print the result
 # result["result"]
