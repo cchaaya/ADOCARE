@@ -364,6 +364,7 @@ st.set_option('deprecation.showfileUploaderEncoding', False)
 # if __name__ == "__main__":
 #     main()
 
+
 # import streamlit as st
 
 # def main():
@@ -382,14 +383,15 @@ st.set_option('deprecation.showfileUploaderEncoding', False)
 #             conversation.append(("User:", user_question))
 #             conversation.append(("Adocare:", result['answer']))
 
-#     # Display the conversation history in reverse order
-#     conversation_display = "\n".join([f"{sender} {message}" for sender, message in reversed(conversation)])
-#     st.text_area("Adocare reply:", result['answer'], height=200)
+#     # Display the conversation history and the most recent bot's reply
+#     conversation_display = "\n".join([f"{sender} {message}" for sender, message in conversation])
+#     st.text_area("Conversation:", conversation_display, height=200)
 
 # if __name__ == "__main__":
 #     main()
 
 import streamlit as st
+
 
 def main():
     st.title("Adocare Chatbot")
@@ -407,13 +409,12 @@ def main():
             conversation.append(("User:", user_question))
             conversation.append(("Adocare:", result['answer']))
 
-    # Display the conversation history and the most recent bot's reply
-    conversation_display = "\n".join([f"{sender} {message}" for sender, message in conversation])
-    st.text_area("Conversation:", conversation_display, height=200)
+    # Display the conversation history in reverse order
+    conversation_display = "\n".join([f"{sender} {message}" for sender, message in reversed(conversation)])
+    st.text_area("Conversation History:", conversation_display, height=200)
 
 if __name__ == "__main__":
     main()
-
 
 
 
