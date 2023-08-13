@@ -30,7 +30,7 @@ os.environ['OPENAI_API_KEY'] = 'sk-aK8n6mYBEVV0MuXtHujYT3BlbkFJ1GkVPbB49WmAmgvru
 
 # The code initializes PDF loaders and loads multiple PDF documents into a list
 pdf_loaders = [
-    PyPDFLoader("/content/12QAsSRH.pdf"),
+    PyPDFLoader("12QAsSRH.pdf"),
     #PyPDFLoader("//content/SexualHarassment.pdf"),
     #PyPDFLoader("/content/SexuallyTransmittedDiseases.pdf")
 ]
