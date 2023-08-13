@@ -331,7 +331,7 @@ def main():
         result = conv_qa({"question": user_question})
 
         # Display the answer
-        st.text("Adocare reply: " + result['answer'])
+        st.text("Adocare reply: " + result['answer'], height=200)
 
 if __name__ == "__main__":
     main()
