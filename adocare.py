@@ -23,6 +23,7 @@ from langchain.prompts import PromptTemplate
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
 import yt_dlp
+import streamlit as st
 
 
 
@@ -303,16 +304,35 @@ conv_qa = ConversationalRetrievalChain.from_llm(
 # """
 
 # Conversational Retrieval Chain implementation
-if __name__ == "__main__":
-    while True:
-        # question = input("Please enter your question:")
-        user_question = input("\033[1mUser question:\033[0m ")
-        if user_question.lower() == "exit":
-            print("Goodbye!")
-            break
+# if __name__ == "__main__":
+#     while True:
+#         # question = input("Please enter your question:")
+#         user_question = input("\033[1mUser question:\033[0m ")
+#         if user_question.lower() == "exit":
+#             print("Goodbye!")
+#             break
 
-        # Perform conversational question-answering using the 'conv_qa' instance
+#         # Perform conversational question-answering using the 'conv_qa' instance
+#         result = conv_qa({"question": user_question})
+
+#         # Print the bold label and the generated answer
+#         print("\033[1mAdocare reply:\033[0m", result['answer'])
+
+
+
+
+def main():
+    st.title("Adocare Chatbot")
+
+    user_question = st.text_input("User question:")
+
+    if user_question:
+        # Perform conversational question-answering using the model
         result = conv_qa({"question": user_question})
 
-        # Print the bold label and the generated answer
-        print("\033[1mAdocare reply:\033[0m", result['answer'])
+        # Display the answer
+        st.text("Adocare reply: " + result['answer'])
+
+if __name__ == "__main__":
+    main()
+
