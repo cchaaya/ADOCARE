@@ -319,22 +319,50 @@ conv_qa = ConversationalRetrievalChain.from_llm(
 #         print("\033[1mAdocare reply:\033[0m", result['answer'])
 
 
+# def main():
+#     st.title("Adocare Chatbot")
+
+#     user_question = st.text_input("User question:")
+
+#     if user_question:
+#         # Perform conversational question-answering using the model
+#         result = conv_qa({"question": user_question})
+
+#         # Display the question and answer in a fixed-size text area
+#         st.text("User question: " + user_question)
+#         st.text_area("Adocare reply:", result['answer'], height=200)
+
+# if __name__ == "__main__":
+#     main()
+
+import streamlit as st
+
 def main():
     st.title("Adocare Chatbot")
+    
+    # Initialize an empty list to store the conversation
+    conversation = []
 
-    user_question = st.text_input("User question:")
-
-    if user_question:
-        # Perform conversational question-answering using the model
-        result = conv_qa({"question": user_question})
-
-        # Display the question and answer in a fixed-size text area
-        st.text("User question: " + user_question)
-        st.text_area("Adocare reply:", result['answer'], height=200)
+    while True:
+        user_question = st.text_input("User question:")
+        
+        if user_question:
+            # Perform conversational question-answering using the model
+            result = conv_qa({"question": user_question})
+            
+            # Append the user's prompt and the bot's reply to the conversation list
+            conversation.append(("User:", user_question))
+            conversation.append(("Adocare:", result['answer']))
+            
+            # Display the conversation in reverse order, so that the latest message is on top
+            for sender, message in reversed(conversation):
+                st.text(f"{sender} {message}")
+        
+        if st.button("Exit"):
+            break
 
 if __name__ == "__main__":
     main()
-
 
 
 
