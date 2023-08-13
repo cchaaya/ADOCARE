@@ -354,7 +354,7 @@ def main():
 
             # Append the user's prompt and the bot's reply to the conversation list
             conversation.append(("User:", user_question))
-            conversation.append(("Adocare:", result['answer'],height=200))
+            conversation.append(("Adocare:", result['answer'])height=200)
 
     # Display the conversation history in reverse order
     conversation_display = "\n".join([f"{sender} {message}" for sender, message in reversed(conversation)])
