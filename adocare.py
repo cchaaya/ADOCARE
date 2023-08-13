@@ -176,7 +176,7 @@ embedding = OpenAIEmbeddings()
 persist_directory = 'docs/chroma/'
 
 # remove old database files if any
-!rm -rf ./docs/chroma
+# !rm -rf ./docs/chroma
 
 # Create a Chroma instance named 'vectordb' using embeddings and documents
 vectordb = Chroma.from_documents(
@@ -353,7 +353,3 @@ if __name__ == "__main__":
 
         # Print the bold label and the generated answer
         print("\033[1mAdocare reply:\033[0m", result['answer'])
-
-# !pip install pipreqs
-
-# !pipreqs
