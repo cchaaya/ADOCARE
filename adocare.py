@@ -348,21 +348,26 @@ def main():
     with st.form("user_input_form"):
         user_question = st.text_input("User question:")
 
-        if st.form_submit_button("Submit"):
-            if user_question:
-                # Perform conversational question-answering using the model
-                result = conv_qa({"question": user_question})
+        if user_question:
+            # Perform conversational question-answering using the model
+            result = conv_qa({"question": user_question})
 
-                # Append the user's prompt and the bot's reply to the conversation list
-                conversation.append(("User:", user_question))
-                conversation.append(("Adocare:", result['answer']))
+            # Append the user's prompt and the bot's reply to the conversation list
+            conversation.append(("User:", user_question))
+            conversation.append(("Adocare:", result['answer']))
 
     # Display the conversation in reverse order, so that the latest message is on top
     conversation_display = "\n".join([f"{sender} {message}" for sender, message in reversed(conversation)])
     st.text(conversation_display)
 
+    # Allow the user to exit the conversation
+    exit_choice = st.button("Exit")
+    if exit_choice:
+        st.text("Goodbye!")
+
 if __name__ == "__main__":
     main()
+
 
 
 
