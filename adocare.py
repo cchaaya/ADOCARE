@@ -20,7 +20,7 @@ from langchain.prompts import PromptTemplate
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
 import yt_dlp
-yt_dlp.postprocessor.common.FFMPEG_PATH = '/usr/bin/ffmpeg'
+os.environ["FFMPEG_BINARY"] = "/usr/bin/ffmpeg"
 
 
 # This will read and set environment variables from the .env file in the Colab environment
