@@ -73,7 +73,7 @@ for pdf_loader in pdf_loaders:
 # )
 
 # Load the audio content and parse it
-docs = loader.load()
+# docs = loader.load()
 # print (len(docs))
 
 # print the loaded audio content
