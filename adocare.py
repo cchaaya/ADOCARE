@@ -27,7 +27,6 @@ load_dotenv()
 os.environ['OPENAI_API_KEY'] = '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'
 
 ## PDFs
-"""
 
 # The code initializes PDF loaders and loads multiple PDF documents into a list
 pdf_loaders = [
@@ -39,23 +38,19 @@ pdfs = []
 for pdf_loader in pdf_loaders:
     pdfs.extend(pdf_loader.load())
 
-"""*   Each page loaded is a Document.
-*   A Document contains text (page_content) and metadata.
-"""
-
 # Get the total number of loaded PDFs in the 'pdfs' list
-len(pdfs)
+# len(pdfs)
 
 # Retrieve the content of the PDF at index 40 from the 'pdfs' list
-page = pdfs[40]
+# page = pdfs[40]
 
 # Access the metadata of the loaded PDF page
-page.metadata
+# page.metadata
 
 # Print the content of the loaded PDF page
-print(page.page_content)
+# print(page.page_content)
 
-"""## YouTube"""
+# """## YouTube"""
 
 # Set the OpenAI API key for authentication
 openai.api_key = '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'
@@ -72,12 +67,12 @@ loader = GenericLoader(
 
 # Load the audio content and parse it
 docs = loader.load()
-print (len(docs))
+# print (len(docs))
 
 # print the loaded audio content
-docs[0].page_content[0:500]
+# docs[0].page_content[0:500]
 
-"""## URLs"""
+# """## URLs"""
 
 # Create a web loader instance to load content from the specified URL
 web_loader = WebBaseLoader("https://www.webmd.com/teens/how-to-tell-parents-pregnant")
@@ -91,7 +86,7 @@ webpages = web_loader.load()
 # Print the first loaded document
 # webpages[0].page_content
 
-"""## Final Corpus"""
+# """## Final Corpus"""
 
 # Create an empty list to store the combined corpus
 corpus = []
@@ -105,10 +100,10 @@ corpus.extend(webpages)
 
 # len(pdfs)+len(docs)+len(webpages)
 
-"""# Document Splitting
+# """# Document Splitting
 
-## Recursive Character Text Splitter
-"""
+# ## Recursive Character Text Splitter
+# """
 
 # Create a RecursiveCharacterTextSplitter instance
 r_splitter = RecursiveCharacterTextSplitter(
@@ -126,9 +121,9 @@ rec_splitted_pages = r_splitter.split_documents(corpus)
 # print the content of the selected page
 # rec_splitted_pages[51]
 
-"""# Vectorstores and Embeddings
+# """# Vectorstores and Embeddings
 
-"""
+# """
 
 # Create an instance of the OpenAIEmbeddings class
 embedding = OpenAIEmbeddings()
@@ -149,39 +144,39 @@ vectordb = Chroma.from_documents(
 # Print the count of documents in the Chroma vector database
 # print(vectordb._collection.count())
 
-"""# Retrieval Methods
+# """# Retrieval Methods
 
-## Query
-"""
+# ## Query
+# """
 
-# Define the question
-question = "how can I prevent pregnancy?"
+# # Define the question
+# question = "how can I prevent pregnancy?"
 
-"""## Similarity Search
+# """## Similarity Search
 
-*   focuses solely on semantic similarity between documents and the query, aiming to provide the most relevant matches.
-"""
+# *   focuses solely on semantic similarity between documents and the query, aiming to provide the most relevant matches.
+# # """
 
-# Perform a similarity search using the Chroma vector database
-ss_docs = vectordb.similarity_search(question,k=3) # k is number of documents
+# # Perform a similarity search using the Chroma vector database
+# ss_docs = vectordb.similarity_search(question,k=3) # k is number of documents
 
-# calculates the number of retrieved documents
-# len(ss_docs)
+# # calculates the number of retrieved documents
+# # len(ss_docs)
 
-# Print the content of the n retrieved document
-# ss_docs[0].page_content
+# # Print the content of the n retrieved document
+# # ss_docs[0].page_content
+# # ss_docs[1].page_content
+# # ss_docs[2].page_content
+
 # ss_docs[1].page_content
-# ss_docs[2].page_content
 
-ss_docs[1].page_content
+# """## Addressing Diversity: Maximum marginal relevance
 
-"""## Addressing Diversity: Maximum marginal relevance
-
-*   emphasizes diversity by selecting documents that maintain a balance between relevance and dissimilarity, making it suitable when a varied set of informative documents is desired.
-"""
+# *   emphasizes diversity by selecting documents that maintain a balance between relevance and dissimilarity, making it suitable when a varied set of informative documents is desired.
+# """
 
 # Perform a Maximal Marginal Relevance (MMR) search using the Chroma vector database
-mmr_docs = vectordb.max_marginal_relevance_search(question,k=3)
+# mmr_docs = vectordb.max_marginal_relevance_search(question,k=3)
 
 # Print the first 500 characters of the content of the n MMR-retrieved document
 # mmr_docs[0].page_content[:500]
@@ -192,10 +187,10 @@ mmr_docs = vectordb.max_marginal_relevance_search(question,k=3)
 
 # mmr_docs[2].page_content[:500]
 
-"""# Retrieval Chain
+# """# Retrieval Chain
 
 ## Specify the LLM name and version
-"""
+# """
 
 # Get the current date
 current_date = datetime.datetime.now().date()
@@ -213,10 +208,10 @@ else:
 # Create an instance of the ChatOpenAI class with the specified LLM name and temperature
 llm = ChatOpenAI(model_name=llm_name, temperature=0)
 
-"""## RetrievalQA chain
+# """## RetrievalQA chain
 
-*   Create a simple QA retreival chain with LLM and selected retreival component
-"""
+# *   Create a simple QA retreival chain with LLM and selected retreival component
+# """
 
 # Create a RetrievalQA instance named 'qa_chain' with an LLM and MMR-based retriever
 qa_chain = RetrievalQA.from_chain_type(
@@ -227,8 +222,8 @@ qa_chain = RetrievalQA.from_chain_type(
 # Perform question-answering using the 'qa_chain' instance with the given query
 result = qa_chain({"query": question})
 
-# print the result
-result["result"]
+# # print the result
+# result["result"]
 
 """### QA Retrieval chain with Prompt"""
 
@@ -248,22 +243,22 @@ p_qa_chain = RetrievalQA.from_chain_type(
     chain_type_kwargs={"prompt": QA_CHAIN_PROMPT}
 )
 
-# Define the question
-question = "When did WWII happen?"
+# # Define the question
+# question = "When did WWII happen?"
 
-# Use the configured CRC instance to perform question-answering with the given query
-result = p_qa_chain({"query": question})
+# # Use the configured CRC instance to perform question-answering with the given query
+# result = p_qa_chain({"query": question})
 
-result["result"]
+# result["result"]
 
-"""## Conversational Retrieval Chain
+# """## Conversational Retrieval Chain
 
-*   Create a Conversational Retrieval Chain (CRC) by combining the power of an OpenAI Language Model (LLM) with a a selected retrieval component (SS or MMR)
-* As a main components of the CRC, use the prompt component to guide the
-conversation to extract data from our corpus only and configure a memory mechanism to store and manage the contextual information throughout the interaction.
+# *   Create a Conversational Retrieval Chain (CRC) by combining the power of an OpenAI Language Model (LLM) with a a selected retrieval component (SS or MMR)
+# * As a main components of the CRC, use the prompt component to guide the
+# conversation to extract data from our corpus only and configure a memory mechanism to store and manage the contextual information throughout the interaction.
 
 ### Chat (with memory)
-"""
+# """
 
 # Create a ConversationBufferMemory instance for managing conversational context
 memory = ConversationBufferMemory(
@@ -271,7 +266,7 @@ memory = ConversationBufferMemory(
     return_messages=True          # Setting to return messages along with other data
 )
 
-"""### Run the Conversational Retrieval Chain with the Prompt & Memory components"""
+# """### Run the Conversational Retrieval Chain with the Prompt & Memory components"""
 
 # Create a ConversationalRetrievalChain instance for conversational question-answering
 conv_qa = ConversationalRetrievalChain.from_llm(
@@ -281,24 +276,24 @@ conv_qa = ConversationalRetrievalChain.from_llm(
     combine_docs_chain_kwargs={"prompt": QA_CHAIN_PROMPT}  # Prompt for document combining
 )
 
-# Define the question
-# question = "Name 3 ways to prevent pregnancy?"
-question = "how do i tell my parents that i am pregnant?"
+# # Define the question
+# # question = "Name 3 ways to prevent pregnancy?"
+# question = "how do i tell my parents that i am pregnant?"
 
-result = conv_qa({"question": question})
+# result = conv_qa({"question": question})
 
-# Print the results
-result['answer']
+# # Print the results
+# result['answer']
 
-# Define the question to test the memory
-# question = "can you tell me again what is the third one?"
-question = "and will they understand?"
-result = conv_qa({"question": question})
-result['answer']
+# # Define the question to test the memory
+# # question = "can you tell me again what is the third one?"
+# question = "and will they understand?"
+# result = conv_qa({"question": question})
+# result['answer']
 
-"""# Chatbot application
-Now, it's your trun to try with any questions you have!
-"""
+# """# Chatbot application
+# Now, it's your trun to try with any questions you have!
+# """
 
 # Conversational Retrieval Chain implementation
 if __name__ == "__main__":
