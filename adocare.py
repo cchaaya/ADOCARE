@@ -20,6 +20,8 @@ from langchain.prompts import PromptTemplate
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
 import yt_dlp
+
+# Set the path to the ffmpeg executable
 os.environ["FFMPEG_BINARY"] = "/usr/bin/ffmpeg"
 
 
