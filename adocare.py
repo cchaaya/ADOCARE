@@ -332,9 +332,6 @@ conv_qa = ConversationalRetrievalChain.from_llm(
 #         st.text("User question: " + user_question)
 #         st.text_area("Adocare reply:", result['answer'], height=200)
 
-# if __name__ == "__main__":
-#     main()
-
 def main():
     st.title("Adocare Chatbot")
 
@@ -357,5 +354,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
