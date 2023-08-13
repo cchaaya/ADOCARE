@@ -1,5 +1,8 @@
 """## Libraries"""
 
+# Set the path to the ffmpeg executable
+os.environ["FFMPEG_BINARY"] = "/usr/bin/ffmpeg"
+
 import os
 import openai
 import sys
@@ -21,8 +24,7 @@ from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
 import yt_dlp
 
-# Set the path to the ffmpeg executable
-os.environ["FFMPEG_BINARY"] = "/usr/bin/ffmpeg"
+
 
 
 # This will read and set environment variables from the .env file in the Colab environment
@@ -57,18 +59,18 @@ for pdf_loader in pdf_loaders:
 
 # """## YouTube"""
 
-# Set the OpenAI API key for authentication
-openai.api_key = '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'
+# # Set the OpenAI API key for authentication
+# openai.api_key = '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'
 
-# Define the URL of the YouTube video and the directory to save the content
-url="https://www.youtube.com/watch?v=umpBnIxOqy8"
-save_dir="docs/youtube/"
+# # Define the URL of the YouTube video and the directory to save the content
+# url="https://www.youtube.com/watch?v=umpBnIxOqy8"
+# save_dir="docs/youtube/"
 
-# Create a loader using a combination of YouTube audio loader and OpenAI Whisper parser
-loader = GenericLoader(
-    YoutubeAudioLoader([url],save_dir),
-    OpenAIWhisperParser()
-)
+# # Create a loader using a combination of YouTube audio loader and OpenAI Whisper parser
+# loader = GenericLoader(
+#     YoutubeAudioLoader([url],save_dir),
+#     OpenAIWhisperParser()
+# )
 
 # Load the audio content and parse it
 docs = loader.load()
