@@ -12,6 +12,7 @@ certifi==2023.7.22
 brotli==1.0.9
 pydub==0.25.1
 bs4==0.0.1
-chromadb==0.4.5
+#chromadb==0.4.5
+chromadb==0.3.29
 
 
