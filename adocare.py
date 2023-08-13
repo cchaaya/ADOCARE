@@ -340,18 +340,22 @@ def main():
 
     conversation_history = []  # Initialize an empty list to store conversation history
 
-    user_question = st.text_input("User question:")
+    while True:
+        user_question = st.text_input("User question:")
+        if user_question:
+            if user_question.lower() == "exit":
+                break
+            
+            # Perform conversational question-answering using the model
+            result = conv_qa({"question": user_question})
 
-    if user_question:
-        # Perform conversational question-answering using the model
-        result = conv_qa({"question": user_question})
+            # Add the user question and Adocare's reply to the conversation history
+            conversation_history.append(("User: " + user_question, "Adocare: " + result['answer']))
 
-        # Add the user question and Adocare's reply to the conversation history
-        conversation_history.append(("User: " + user_question, "Adocare: " + result['answer']))
-
-        # Display the conversation history in a text area
-        st.text_area("Conversation History:", "\n".join(["\n".join(item) for item in conversation_history]), height=400)
+            # Display the conversation history in a text area
+            st.text_area("Conversation History:", "\n".join(["\n".join(item) for item in conversation_history]), height=400)
 
 if __name__ == "__main__":
     main()
+
 
