@@ -348,7 +348,7 @@ def main():
     with st.form("user_input_form"):
         user_question = st.text_input("User question:")
 
-        if user_question:
+        if st.form_submit_button(label="Submit") and user_question:
             # Perform conversational question-answering using the model
             result = conv_qa({"question": user_question})
 
@@ -356,17 +356,13 @@ def main():
             conversation.append(("User:", user_question))
             conversation.append(("Adocare:", result['answer']))
 
-    # Display the conversation in reverse order, so that the latest message is on top
+    # Display the conversation history in reverse order
     conversation_display = "\n".join([f"{sender} {message}" for sender, message in reversed(conversation)])
     st.text(conversation_display)
 
-    # Allow the user to exit the conversation
-    exit_choice = st.button("Exit")
-    if exit_choice:
-        st.text("Goodbye!")
-
 if __name__ == "__main__":
     main()
+
 
 
 
