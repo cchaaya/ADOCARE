@@ -387,11 +387,9 @@ st.set_option('deprecation.showfileUploaderEncoding', False)
 #     conversation_display = "\n".join([f"{sender} {message}" for sender, message in conversation])
 #     st.text_area("Conversation:", conversation_display, height=200)
 
-# if __name__ == "__main__":
-#     main()
-
 import streamlit as st
 
+# Your other imports and setup here
 
 def main():
     st.title("Adocare Chatbot")
@@ -415,6 +413,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
