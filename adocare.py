@@ -407,9 +407,8 @@ def main():
             conversation.append(("User:", user_question))
             conversation.append(("Adocare:", result['answer']))
 
-    # Display the conversation history in reverse order
-    conversation_display = "\n".join([f"{sender} {message}" for sender, message in reversed(conversation)])
-    st.text_area("Conversation History:", conversation_display, height=200)
+    # Display the conversation history in chat-like format
+    st.text_area("Conversation History:", value="\n".join([f"{sender} {message}" for sender, message in conversation]), height=200)
 
 if __name__ == "__main__":
     main()
