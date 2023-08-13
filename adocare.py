@@ -321,6 +321,25 @@ conv_qa = ConversationalRetrievalChain.from_llm(
 
 
 
+# def main():
+#     st.title("Adocare Chatbot")
+
+#     user_question = st.text_input("User question:")
+
+#     if user_question:
+#         # Perform conversational question-answering using the model
+#         result = conv_qa({"question": user_question})
+
+#         # Display the answer
+#         st.text("Adocare reply: " + result['answer'])
+
+# if __name__ == "__main__":
+#     main()
+
+import streamlit as st
+
+# Import necessary packages and set up your model here
+
 def main():
     st.title("Adocare Chatbot")
 
@@ -330,11 +349,11 @@ def main():
         # Perform conversational question-answering using the model
         result = conv_qa({"question": user_question})
 
-        # Display the answer
-        st.text("Adocare reply: " + result['answer'])
+        # Display the question and answer in a fixed-size text area
+        st.text("User question: " + user_question)
+        st.text_area("Adocare reply:", result['answer'], height=200)
 
 if __name__ == "__main__":
     main()
-
 
 
