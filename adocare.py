@@ -232,7 +232,7 @@ qa_chain = RetrievalQA.from_chain_type(
 # # print the result
 # result["result"]
 
-"""### QA Retrieval chain with Prompt"""
+# """### QA Retrieval chain with Prompt"""
 
 # Build a prompt template for question-answering
 template = """Answer the question using information from our corpus only. If you don't know the answer, just say that "I don't know the answer to this question." Don't try to make up an answer. Use three sentences maximum. Keep the answer as concise as possible. Always say "thanks for asking!" at the end of the answer.
