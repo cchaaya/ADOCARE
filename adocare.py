@@ -365,7 +365,10 @@ st.set_option('deprecation.showfileUploaderEncoding', False)
 #     main()
 
 
+
 # import streamlit as st
+
+# # Your other imports and setup here
 
 # def main():
 #     st.title("Adocare Chatbot")
@@ -383,18 +386,16 @@ st.set_option('deprecation.showfileUploaderEncoding', False)
 #             conversation.append(("User:", user_question))
 #             conversation.append(("Adocare:", result['answer']))
 
-#     # Display the conversation history and the most recent bot's reply
-#     conversation_display = "\n".join([f"{sender} {message}" for sender, message in conversation])
-#     st.text_area("Conversation:", conversation_display, height=200)
+#     # Display the conversation history in chat-like format
+#     st.text_area("Conversation History:", value="\n".join([f"{sender} {message}" for sender, message in conversation]), height=200)
 
-import streamlit as st
-
-# Your other imports and setup here
+# if __name__ == "__main__":
+#     main()
 
 def main():
     st.title("Adocare Chatbot")
 
-    conversation = []
+    conversation = []  # Initialize an empty list to store the conversation history
 
     with st.form("user_input_form"):
         user_question = st.text_input("User question:")
@@ -407,12 +408,12 @@ def main():
             conversation.append(("User:", user_question))
             conversation.append(("Adocare:", result['answer']))
 
-    # Display the conversation history in chat-like format
-    st.text_area("Conversation History:", value="\n".join([f"{sender} {message}" for sender, message in conversation]), height=200)
+    # Display the conversation history in reverse order
+    conversation_display = "\n".join([f"{sender} {message}" for sender, message in conversation])
+    st.text_area("Conversation History:", conversation_display, height=200)  # Display the conversation history
 
 if __name__ == "__main__":
     main()
-
 
 
 
