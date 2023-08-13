@@ -384,7 +384,6 @@ def main():
 
     # Display the conversation history in reverse order
     conversation_display = "\n".join([f"{sender} {message}" for sender, message in reversed(conversation)])
-    st.text_area("Conversation:", conversation_display, height=200)
     st.text_area("Adocare reply:", result['answer'], height=200)
 
 if __name__ == "__main__":
