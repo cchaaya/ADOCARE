@@ -1,7 +1,7 @@
 """## Libraries"""
 
 # Set the path to the ffmpeg executable
-os.environ["FFMPEG_BINARY"] = "/usr/bin/ffmpeg"
+# os.environ["FFMPEG_BINARY"] = "/usr/bin/ffmpeg"
 
 import os
 import openai
