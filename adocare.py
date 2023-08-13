@@ -360,8 +360,8 @@ def main():
             break
 
         # Display the conversation in reverse order, so that the latest message is on top
-        for sender, message in reversed(conversation):
-            st.text(f"{sender} {message}")
+        conversation_display = "\n".join([f"{sender} {message}" for sender, message in reversed(conversation)])
+        st.text(conversation_display)
 
 if __name__ == "__main__":
     main()
