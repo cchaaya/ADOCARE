@@ -299,7 +299,7 @@ conv_qa = ConversationalRetrievalChain.from_llm(
 # result['answer']
 
 # """# Chatbot application
-Now, it's your trun to try with any questions you have!
+"""Now, it's your trun to try with any questions you have!
 # """
 
 # # Conversational Retrieval Chain implementation
