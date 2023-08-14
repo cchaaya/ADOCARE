@@ -196,7 +196,7 @@ def main():
     with col2:
         st.write("")  # Empty column for spacing
     with col3:
-        st.image("Group_pic.png", use_column_width=True, width=300)  # Display the image with increased width
+        st.image("Group_pic.JPG", use_column_width=True, width=300)  # Display the image with increased width
 
     st.subheader("Feel free to ask any questions you have!")
     st.markdown("This is a demo Chatbot designed to respond to adolescents' inquiries related to sexual and reproductive health."
