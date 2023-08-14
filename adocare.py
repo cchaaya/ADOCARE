@@ -210,21 +210,18 @@ conv_qa = ConversationalRetrievalChain.from_llm(
 # if __name__ == "__main__":
 #     main()
 
-import streamlit as st
 
 def main():
     conversation = []  # Initialize an empty list to store the conversation history
 
-    # Add the image next to the title
-    col1, col2, col3, col4 = st.columns([0.25, 0.25, 0.25, 0.25])  # Divide the screen into columns
+    # Add the title and image next to each other
+    col1, col2, col3 = st.columns([1, 1, 1])  # Divide the screen into three equal-width columns
     with col1:
         st.title("Adocare Chatbot")  # Display the title
     with col2:
         st.write("")  # Empty column for spacing
     with col3:
-        st.write("")  # Empty column for spacing
-    with col4:
-        st.image("Group_pic.png", use_column_width=True)  # Display the image
+        st.image("Group_pic.png", use_column_width=True, width=300)  # Display the image with increased width
 
     st.subheader("Feel free to ask any questions you have!")
     st.markdown("This is a demo Chatbot designed to respond to adolescents' inquiries related to sexual and reproductive health."
@@ -250,5 +247,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
