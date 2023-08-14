@@ -339,6 +339,10 @@ conv_qa = ConversationalRetrievalChain.from_llm(
             conversation.append(("User:", user_question))
             conversation.append(("Adocare:", result['answer']))
 
+            # Clear the user's input after submitting
+            user_question = ""  # Set the user_question variable to an empty string
+
+
     # Display the conversation history in reverse order
     conversation_display = "\n".join([f"{sender} {message}" for sender, message in conversation])
     st.text_area("Conversation History:", conversation_display, height=200)  # Display the conversation history
