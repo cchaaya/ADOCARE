@@ -320,35 +320,37 @@ conv_qa = ConversationalRetrievalChain.from_llm(
 #         print("\033[1mAdocare reply:\033[0m", result['answer'])
 
 
+import streamlit as st
+
 # def main():
-    st.title("Adocare Chatbot")
-    st.subheader("Feel free to ask any questions you have!")
-    st.markdown("The main objective of this project is to design a ChatBot “Adocare” that will provide equitable and accessible"
-      " sexual and reproductive health (SRH) information and services to adolescents in Lebanon")
+st.title("Adocare Chatbot")
+st.subheader("Feel free to ask any questions you have!")
+st.markdown("The main objective of this project is to design a ChatBot “Adocare” that will provide equitable and accessible"
+            " sexual and reproductive health (SRH) information and services to adolescents in Lebanon")
 
-    conversation = []  # Initialize an empty list to store the conversation history
+conversation = []  # Initialize an empty list to store the conversation history
 
-    with st.form("user_input_form"):
-        user_question = st.text_input("User question:")
+with st.form("user_input_form"):
+    user_question = st.text_input("User question:")
 
-        if st.form_submit_button(label="Submit") and user_question:
-            # Perform conversational question-answering using the model
-            result = conv_qa({"question": user_question})
+    if st.form_submit_button(label="Submit") and user_question:
+        # Perform conversational question-answering using the model
+        result = conv_qa({"question": user_question})
 
-            # Append the user's prompt and the bot's reply to the conversation list
-            conversation.append(("User:", user_question))
-            conversation.append(("Adocare:", result['answer']))
+        # Append the user's prompt and the bot's reply to the conversation list
+        conversation.append(("User:", user_question))
+        conversation.append(("Adocare:", result['answer']))
 
-            # Clear the user's input after submitting
-            user_question = ""  # Set the user_question variable to an empty string
+        # Clear the user's input after submitting
+        user_question = ""  # Set the user_question variable to an empty string
 
+# Display the conversation history in reverse order
+conversation_display = "\n".join([f"{sender} {message}" for sender, message in conversation])
+st.text_area("Conversation History:", conversation_display, height=200)  # Display the conversation history
 
-    # Display the conversation history in reverse order
-    conversation_display = "\n".join([f"{sender} {message}" for sender, message in conversation])
-    st.text_area("Conversation History:", conversation_display, height=200)  # Display the conversation history
+# if __name__ == "__main__":
+#     main()
 
-if __name__ == "__main__":
-    main()
 
 
 # def main():
