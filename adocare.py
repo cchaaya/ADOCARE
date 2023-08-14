@@ -185,7 +185,7 @@ st.title("Adocare Chatbot")
 st.subheader("Feel free to ask any questions you have!")
 st.markdown("This is a demo Chatbot designed to respond to adolescents' inquiries related to sexual and reproductive health."
             " Ongoing development is being made for further enhancement")
-# def main():
+def main():
 
 conversation = []  # Initialize an empty list to store the conversation history
 
@@ -207,5 +207,5 @@ with st.form("user_input_form"):
 conversation_display = "\n".join([f"{sender} {message}" for sender, message in conversation])
 st.text_area("Conversation History:", conversation_display, height=200)  # Display the conversation history
 
-# if __name__ == "__main__":
-#     main()
+if __name__ == "__main__":
+    main()
