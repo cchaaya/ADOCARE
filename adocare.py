@@ -1,8 +1,4 @@
 """## Libraries"""
-
-# Set the path to the ffmpeg executable
-# os.environ["FFMPEG_BINARY"] = "/usr/bin/ffmpeg"
-
 import os
 import openai
 import sys
@@ -26,17 +22,13 @@ import yt_dlp
 import streamlit as st
 
 
-
-
 # This will read and set environment variables from the .env file in the Colab environment
 load_dotenv()
 
 # Set the OpenAI API key for authentication
-# os.environ['OPENAI_API_KEY'] = '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'
 os.environ['OPENAI_API_KEY'] = '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'
-# os.environ['OPENAI_API_KEY'] = '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'
-## PDFs
 
+## PDFs
 # The code initializes PDF loaders and loads multiple PDF documents into a list
 pdf_loaders = [
     PyPDFLoader("12QAsSRH.pdf"),
@@ -47,17 +39,6 @@ pdfs = []
 for pdf_loader in pdf_loaders:
     pdfs.extend(pdf_loader.load())
 
-# Get the total number of loaded PDFs in the 'pdfs' list
-# len(pdfs)
-
-# Retrieve the content of the PDF at index 40 from the 'pdfs' list
-# page = pdfs[40]
-
-# Access the metadata of the loaded PDF page
-# page.metadata
-
-# Print the content of the loaded PDF page
-# print(page.page_content)
 
 # """## YouTube"""
 
@@ -76,10 +57,6 @@ for pdf_loader in pdf_loaders:
 
 # Load the audio content and parse it
 # docs = loader.load()
-# print (len(docs))
-
-# print the loaded audio content
-# docs[0].page_content[0:500]
 
 # """## URLs"""
 
@@ -88,12 +65,6 @@ web_loader = WebBaseLoader("https://www.webmd.com/teens/how-to-tell-parents-preg
 
 # Load the content of the webpage using the web loader
 webpages = web_loader.load()
-
-# check the number of loaded documents
-# len(webpages)
-
-# Print the first loaded document
-# webpages[0].page_content
 
 # """## Final Corpus"""
 
@@ -105,14 +76,10 @@ corpus.extend(pdfs)
 # corpus.extend(docs)
 corpus.extend(webpages)
 
-# print(len(corpus))
-
-# len(pdfs)+len(docs)+len(webpages)
 
 # """# Document Splitting
 
-# ## Recursive Character Text Splitter
-# """
+### Recursive Character Text Splitter
 
 # Create a RecursiveCharacterTextSplitter instance
 r_splitter = RecursiveCharacterTextSplitter(
@@ -124,24 +91,13 @@ r_splitter = RecursiveCharacterTextSplitter(
 # Use the RecursiveCharacterTextSplitter to split the 'corpus' into smaller pages
 rec_splitted_pages = r_splitter.split_documents(corpus)
 
-# print the number of documents
-# print(len(rec_splitted_pages))
-
-# print the content of the selected page
-# rec_splitted_pages[51]
-
 # """# Vectorstores and Embeddings
-
-# """
 
 # Create an instance of the OpenAIEmbeddings class
 embedding = OpenAIEmbeddings()
 
 # Define the directory path for data persistence related to chroma
 persist_directory = 'docs/chroma/'
-
-# remove old database files if any
-# !rm -rf ./docs/chroma
 
 # Create a Chroma instance named 'vectordb' using embeddings and documents
 vectordb = Chroma.from_documents(
@@ -153,53 +109,9 @@ vectordb = Chroma.from_documents(
 # Print the count of documents in the Chroma vector database
 # print(vectordb._collection.count())
 
-# """# Retrieval Methods
-
-# ## Query
-# """
-
-# # Define the question
-# question = "how can I prevent pregnancy?"
-
-# """## Similarity Search
-
-# *   focuses solely on semantic similarity between documents and the query, aiming to provide the most relevant matches.
-# # """
-
-# # Perform a similarity search using the Chroma vector database
-# ss_docs = vectordb.similarity_search(question,k=3) # k is number of documents
-
-# # calculates the number of retrieved documents
-# # len(ss_docs)
-
-# # Print the content of the n retrieved document
-# # ss_docs[0].page_content
-# # ss_docs[1].page_content
-# # ss_docs[2].page_content
-
-# ss_docs[1].page_content
-
-# """## Addressing Diversity: Maximum marginal relevance
-
-# *   emphasizes diversity by selecting documents that maintain a balance between relevance and dissimilarity, making it suitable when a varied set of informative documents is desired.
-# """
-
-# Perform a Maximal Marginal Relevance (MMR) search using the Chroma vector database
-# mmr_docs = vectordb.max_marginal_relevance_search(question,k=3)
-
-# Print the first 500 characters of the content of the n MMR-retrieved document
-# mmr_docs[0].page_content[:500]
-# mmr_docs[1].page_content[:500]
-# mmr_docs[2].page_content[:500]
-
-# mmr_docs[1].page_content[:500]
-
-# mmr_docs[2].page_content[:500]
-
 # """# Retrieval Chain
 
 ## Specify the LLM name and version
-# """
 
 # Get the current date
 current_date = datetime.datetime.now().date()
@@ -220,7 +132,7 @@ llm = ChatOpenAI(model_name=llm_name, temperature=0)
 # """## RetrievalQA chain
 
 # *   Create a simple QA retreival chain with LLM and selected retreival component
-# """
+
 
 # Create a RetrievalQA instance named 'qa_chain' with an LLM and MMR-based retriever
 qa_chain = RetrievalQA.from_chain_type(
@@ -228,11 +140,6 @@ qa_chain = RetrievalQA.from_chain_type(
     retriever=vectordb.as_retriever(search_type="mmr")  # MMR-based retrieval component
 )
 
-# Perform question-answering using the 'qa_chain' instance with the given query
-# result = qa_chain({"query": question})
-
-# # print the result
-# result["result"]
 
 # """### QA Retrieval chain with Prompt"""
 
@@ -252,22 +159,8 @@ p_qa_chain = RetrievalQA.from_chain_type(
     chain_type_kwargs={"prompt": QA_CHAIN_PROMPT}
 )
 
-# # Define the question
-# question = "When did WWII happen?"
-
-# # Use the configured CRC instance to perform question-answering with the given query
-# result = p_qa_chain({"query": question})
-
-# result["result"]
-
-# """## Conversational Retrieval Chain
-
-# *   Create a Conversational Retrieval Chain (CRC) by combining the power of an OpenAI Language Model (LLM) with a a selected retrieval component (SS or MMR)
-# * As a main components of the CRC, use the prompt component to guide the
-# conversation to extract data from our corpus only and configure a memory mechanism to store and manage the contextual information throughout the interaction.
 
 ### Chat (with memory)
-# """
 
 # Create a ConversationBufferMemory instance for managing conversational context
 memory = ConversationBufferMemory(
@@ -285,48 +178,14 @@ conv_qa = ConversationalRetrievalChain.from_llm(
     combine_docs_chain_kwargs={"prompt": QA_CHAIN_PROMPT}  # Prompt for document combining
 )
 
-# # Define the question
-# # question = "Name 3 ways to prevent pregnancy?"
-# question = "how do i tell my parents that i am pregnant?"
-
-# result = conv_qa({"question": question})
-
-# # Print the results
-# result['answer']
-
-# # Define the question to test the memory
-# # question = "can you tell me again what is the third one?"
-# question = "and will they understand?"
-# result = conv_qa({"question": question})
-# result['answer']
 
 # """# Chatbot application
-# """Now, it's your trun to try with any questions you have!
-# """
-
-# Conversational Retrieval Chain implementation
-# if __name__ == "__main__":
-#     while True:
-#         # question = input("Please enter your question:")
-#         user_question = input("\033[1mUser question:\033[0m ")
-#         if user_question.lower() == "exit":
-#             print("Goodbye!")
-#             break
-
-#         # Perform conversational question-answering using the 'conv_qa' instance
-#         result = conv_qa({"question": user_question})
-
-#         # Print the bold label and the generated answer
-#         print("\033[1mAdocare reply:\033[0m", result['answer'])
-
-
-import streamlit as st
 
 # def main():
 st.title("Adocare Chatbot")
 st.subheader("Feel free to ask any questions you have!")
-st.markdown("The main objective of this project is to design a ChatBot “Adocare” that will provide equitable and accessible"
-            " sexual and reproductive health (SRH) information and services to adolescents in Lebanon")
+st.markdown("This is a demo Chatbot designed to respond to adolescents' inquiries related to sexual and reproductive health."
+            " Ongoing development is being made for further enhancement")
 
 conversation = []  # Initialize an empty list to store the conversation history
 
@@ -350,55 +209,3 @@ st.text_area("Conversation History:", conversation_display, height=200)  # Displ
 
 # if __name__ == "__main__":
 #     main()
-
-
-
-# def main():
-#     st.title("Adocare Chatbot")
-#     st.subheader("Feel free to ask any questions you have!")
-#     st.markdown("The main objective of this project is to design a ChatBot “Adocare” that will provide equitable and accessible"
-#     " sexual and reproductive health (SRH) information and services to adolescents in Lebanon")
-
-    
-#     conversation = []  # Initialize an empty list to store the conversation history
-
-#     # Add JavaScript code to clear the input field on Enter key press
-#     clear_input_js = """
-#     <script>
-#     const inputElement = document.querySelector('input[data-baseweb="input"]');
-
-#     inputElement.addEventListener('keydown', function(event) {
-#         if (event.key === 'Enter') {
-#             inputElement.value = '';
-#         }
-#     });
-#     </script>
-#     """
-
-#     st.markdown(clear_input_js, unsafe_allow_html=True)
-
-#     with st.form("user_input_form"):
-#         user_question = st.text_input("User question:")
-
-#         if st.form_submit_button(label="Submit") and user_question:
-#             # Perform conversational question-answering using the model
-#             result = conv_qa({"question": user_question})
-
-#             # Append the user's prompt and the bot's reply to the conversation list
-#             conversation.append(("User:", user_question))
-#             conversation.append(("Adocare:", result['answer']))
-
-#     # Display the conversation history in reverse order
-#     conversation_display = "\n".join([f"{sender} {message}" for sender, message in conversation])
-#     st.text_area("Conversation History:", conversation_display, height=200)  # Display the conversation history
-
-# if __name__ == "__main__":
-#     main()
-
-
-
-
-
-
-
-
