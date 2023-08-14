@@ -181,11 +181,11 @@ conv_qa = ConversationalRetrievalChain.from_llm(
 
 # """# Chatbot application
 
-# def main():
 st.title("Adocare Chatbot")
 st.subheader("Feel free to ask any questions you have!")
 st.markdown("This is a demo Chatbot designed to respond to adolescents' inquiries related to sexual and reproductive health."
             " Ongoing development is being made for further enhancement")
+# def main():
 
 conversation = []  # Initialize an empty list to store the conversation history
 
