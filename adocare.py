@@ -301,7 +301,7 @@ conv_qa = ConversationalRetrievalChain.from_llm(
 # result['answer']
 
 # """# Chatbot application
-"""Now, it's your trun to try with any questions you have!
+# """Now, it's your trun to try with any questions you have!
 # """
 
 # Conversational Retrieval Chain implementation
@@ -322,7 +322,7 @@ conv_qa = ConversationalRetrievalChain.from_llm(
 
 # def main():
 #     st.title("Adocare Chatbot")
-
+      st.subheader("Feel free to ask any questions you have!")
 #     conversation = []  # Initialize an empty list to store the conversation history
 
 #     with st.form("user_input_form"):
