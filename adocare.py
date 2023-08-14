@@ -26,8 +26,8 @@ import streamlit as st
 load_dotenv()
 
 # Set the OpenAI API key for authentication
-os.environ['OPENAI_API_KEY'] = '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'
-
+#os.environ['OPENAI_API_KEY'] = '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'
+os.environ['OPENAI_API_KEY'] = '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'
 ## PDFs
 # The code initializes PDF loaders and loads multiple PDF documents into a list
 pdf_loaders = [
