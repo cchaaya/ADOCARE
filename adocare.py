@@ -206,3 +206,6 @@ with st.form("user_input_form"):
 # Display the conversation history in reverse order
 conversation_display = "\n".join([f"{sender} {message}" for sender, message in conversation])
 st.text_area("Conversation History:", conversation_display, height=200)  # Display the conversation history
+
+# if __name__ == "__main__":
+#     main()
