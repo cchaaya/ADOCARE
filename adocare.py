@@ -323,28 +323,7 @@ conv_qa = ConversationalRetrievalChain.from_llm(
 # def main():
 #     st.title("Adocare Chatbot")
 
-#     user_question = st.text_input("User question:")
-
-#     if user_question:
-#         # Perform conversational question-answering using the model
-#         result = conv_qa({"question": user_question})
-
-#         # Display the question and answer in a fixed-size text area
-#         st.text("User question: " + user_question)
-#         st.text_area("Adocare reply:", result['answer'], height=200)
-
-# if __name__ == "__main__":
-#     main()
-
-# Clear Streamlit cache
-st.set_option('deprecation.showfileUploaderEncoding', False)
-
-# import streamlit as st
-
-# def main():
-#     st.title("Adocare Chatbot")
-
-#     conversation = []
+#     conversation = []  # Initialize an empty list to store the conversation history
 
 #     with st.form("user_input_form"):
 #         user_question = st.text_input("User question:")
@@ -358,45 +337,32 @@ st.set_option('deprecation.showfileUploaderEncoding', False)
 #             conversation.append(("Adocare:", result['answer']))
 
 #     # Display the conversation history in reverse order
-#     conversation_display = "\n".join([f"{sender} {message}" for sender, message in reversed(conversation)])
-#     st.text(conversation_display)
-#     st.text_area("Adocare reply:", result['answer'], height=200)
+#     conversation_display = "\n".join([f"{sender} {message}" for sender, message in conversation])
+#     st.text_area("Conversation History:", conversation_display, height=200)  # Display the conversation history
 
 # if __name__ == "__main__":
 #     main()
 
-
-
-# import streamlit as st
-
-# # Your other imports and setup here
-
-# def main():
-#     st.title("Adocare Chatbot")
-
-#     conversation = []
-
-#     with st.form("user_input_form"):
-#         user_question = st.text_input("User question:")
-
-#         if st.form_submit_button(label="Submit") and user_question:
-#             # Perform conversational question-answering using the model
-#             result = conv_qa({"question": user_question})
-
-#             # Append the user's prompt and the bot's reply to the conversation list
-#             conversation.append(("User:", user_question))
-#             conversation.append(("Adocare:", result['answer']))
-
-#     # Display the conversation history in chat-like format
-#     st.text_area("Conversation History:", value="\n".join([f"{sender} {message}" for sender, message in conversation]), height=200)
-
-# if __name__ == "__main__":
-#     main()
 
 def main():
     st.title("Adocare Chatbot")
 
     conversation = []  # Initialize an empty list to store the conversation history
+
+    # Add JavaScript code to clear the input field on Enter key press
+    clear_input_js = """
+    <script>
+    const inputElement = document.querySelector('input[data-baseweb="input"]');
+
+    inputElement.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            inputElement.value = '';
+        }
+    });
+    </script>
+    """
+
+    st.markdown(clear_input_js, unsafe_allow_html=True)
 
     with st.form("user_input_form"):
         user_question = st.text_input("User question:")
