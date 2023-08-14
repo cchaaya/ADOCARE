@@ -348,7 +348,7 @@ def main():
     st.title("Adocare Chatbot")
     st.subheader("Feel free to ask any questions you have!")
     st.markdown("The main objective of this project is to design a ChatBot “Adocare” that will provide equitable and accessible"
-    "sexual and reproductive health (SRH) information and services to adolescents in Lebanon")
+    " sexual and reproductive health (SRH) information and services to adolescents in Lebanon")
 
     
     conversation = []  # Initialize an empty list to store the conversation history
