@@ -181,15 +181,52 @@ conv_qa = ConversationalRetrievalChain.from_llm(
 
 # """# Chatbot application
 
-import streamlit as st
+# import streamlit as st
 
-st.title("Adocare Chatbot")
-st.subheader("Feel free to ask any questions you have!")
-st.markdown("This is a demo Chatbot designed to respond to adolescents' inquiries related to sexual and reproductive health."
-            " Ongoing development is being made for further enhancement")
+# st.title("Adocare Chatbot")
+# st.subheader("Feel free to ask any questions you have!")
+# st.markdown("This is a demo Chatbot designed to respond to adolescents' inquiries related to sexual and reproductive health."
+#             " Ongoing development is being made for further enhancement")
+
+# def main():
+#     conversation = []  # Initialize an empty list to store the conversation history
+
+#     with st.form("user_input_form"):
+#         user_question = st.text_input("User question:")
+
+#         if st.form_submit_button(label="Submit") and user_question:
+#             # Perform conversational question-answering using the model
+#             result = conv_qa({"question": user_question})
+
+#             # Append the user's prompt and the bot's reply to the conversation list
+#             conversation.append(("User:", user_question))
+#             conversation.append(("Adocare:", result['answer']))
+
+#             # Clear the user's input after submitting
+#             user_question = ""  # Set the user_question variable to an empty string
+
+#     # Display the conversation history in reverse order
+#     conversation_display = "\n".join([f"{sender} {message}" for sender, message in conversation])
+#     st.text_area("Conversation History:", conversation_display, height=200)  # Display the conversation history
+
+# if __name__ == "__main__":
+#     main()
+
+import streamlit as st
 
 def main():
     conversation = []  # Initialize an empty list to store the conversation history
+
+    # Add the image next to the title
+    col1, col2 = st.beta_columns([1, 3])  # Divide the screen into columns
+    with col1:
+        st.image("Group_pic.png", use_column_width=True)  # Display the image
+    with col2:
+        st.title("Adocare Chatbot")  # Display the title
+
+    st.subheader("Feel free to ask any questions you have!")
+    st.markdown("This is a demo Chatbot designed to respond to adolescents' inquiries related to sexual and reproductive health."
+                " Ongoing development is being made for further enhancement")
 
     with st.form("user_input_form"):
         user_question = st.text_input("User question:")
@@ -211,4 +248,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
