@@ -26,9 +26,9 @@ import streamlit as st
 load_dotenv()
 
 # Set the OpenAI API key for authentication
-os.environ['OPENAI_API_KEY'] = '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'
+# os.environ['OPENAI_API_KEY'] = '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'
 # os.environ['OPENAI_API_KEY'] = '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'
-# os.environ['OPENAI_API_KEY'] = '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'
+os.environ['OPENAI_API_KEY'] = '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'
 # os.environ['OPENAI_API_KEY'] = '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'
 # os.environ['OPENAI_API_KEY'] = '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'
 
